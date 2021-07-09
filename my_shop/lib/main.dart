@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:my_shop/config/palette.dart';
+import 'package:my_shop/config/routes.dart';
 import 'package:my_shop/screens/splash/splash_screen.dart';
 
 void main() {
@@ -21,7 +22,9 @@ class MyApp extends StatelessWidget {
         ),
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: SplashSCreen(),
+      // home: SplashSCreen(),
+      initialRoute: SplashSCreen.routName,
+      routes: AppRoutes.routes,
     );
   }
 }

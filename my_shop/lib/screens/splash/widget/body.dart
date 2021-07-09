@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:my_shop/config/constants.dart';
+import '/config/constants.dart';
 import '/widget/default_btn.dart';
 import '/config/palette.dart';
 import './splash_content.dart';
@@ -81,7 +81,7 @@ class _BodyState extends State<Body> {
 
   AnimatedContainer _buildDot(int index) {
     return AnimatedContainer(
-      duration: Constents.kAnimationDuration,
+      duration: AppConstents.kAnimationDuration,
       height: 6,
       width: _currentPage == index ? 20 : 6,
       margin: const EdgeInsets.only(right: 5),
