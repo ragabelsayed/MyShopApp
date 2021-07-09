@@ -11,7 +11,7 @@ dependencies:
   flutter:
     sdk: flutter
 
-  # flutter_svg: ^0.22.0  
+  flutter_svg: ^0.22.0  
   cupertino_icons: ^1.0.2
 
 dev_dependencies:
@@ -22,6 +22,7 @@ flutter:
   uses-material-design: true
   assets:
     - assets/images/
+    - assets/icons/
   
   fonts:
     - family: Muli
