@@ -29,7 +29,7 @@ class DefaultButton extends StatelessWidget {
             borderRadius: BorderRadius.circular(18.0),
           ),
         ),
-        onPressed: () => onPressed,
+        onPressed: () => onPressed(),
       ),
     );
   }
