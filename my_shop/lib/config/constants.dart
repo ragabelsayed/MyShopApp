@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:my_shop/config/size.dart';
+import 'package:my_shop/config/palette.dart';
+import '/config/size.dart';
 
 class AppConstents {
   static const kAnimationDuration = Duration(milliseconds: 200);
@@ -22,4 +23,20 @@ class AppConstents {
   static const String kNamelNullError = "Please Enter your name";
   static const String kPhoneNumberNullError = "Please Enter your phone number";
   static const String kAddressNullError = "Please Enter your address";
+
+  static final otpInputDecoration = InputDecoration(
+    contentPadding: EdgeInsets.symmetric(
+        vertical: SizeConfig.getProportionateScreentWidth(15)),
+    border: outlineInputBorder(),
+    focusedBorder: outlineInputBorder(),
+    enabledBorder: outlineInputBorder(),
+  );
+
+  static OutlineInputBorder outlineInputBorder() {
+    return OutlineInputBorder(
+      borderRadius:
+          BorderRadius.circular(SizeConfig.getProportionateScreentWidth(15)),
+      borderSide: BorderSide(color: Palette.kTextColor),
+    );
+  }
 }

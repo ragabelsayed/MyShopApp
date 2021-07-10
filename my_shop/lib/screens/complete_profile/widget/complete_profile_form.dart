@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '/screens/otp/otp_screen.dart';
 import '/config/constants.dart';
 import '/widget/custom_suffix_icon.dart';
 import '/widget/default_btn.dart';
@@ -46,7 +47,7 @@ class _CompleteProfileFormState extends State<CompleteProfileForm> {
               if (_formKey.currentState!.validate()) {
                 _formKey.currentState!.save();
                 // Go to OTP Screen
-                // Navigator.pushNamed(context, CompleteProfileScreen.routName);
+                Navigator.pushNamed(context, OTPScreen.routName);
               }
             },
           ),
