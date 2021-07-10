@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:my_shop/config/constants.dart';
-import 'package:my_shop/widget/custom_suffix_icon.dart';
-import 'package:my_shop/widget/default_btn.dart';
-import 'package:my_shop/widget/form_error.dart';
+import '/config/constants.dart';
+import '/widget/custom_suffix_icon.dart';
+import '/widget/default_btn.dart';
+import '/widget/form_error.dart';
 
 class SignUpForm extends StatefulWidget {
   @override
@@ -16,6 +16,14 @@ class _SignUpFormState extends State<SignUpForm> {
   late String email;
   late String password;
   late String confirmPassword;
+
+  void addError({required String error}) {
+    setState(() => errors.add(error));
+  }
+
+  void removeError({required String error}) {
+    setState(() => errors.remove(error));
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -50,19 +58,19 @@ class _SignUpFormState extends State<SignUpForm> {
       keyboardType: TextInputType.emailAddress,
       validator: (value) {
         if (value!.isEmpty && !errors.contains(AppConstents.kEmailNullError)) {
-          setState(() => errors.add(AppConstents.kEmailNullError));
+          addError(error: AppConstents.kEmailNullError);
         } else if (!AppConstents.emailValidatorRegExp.hasMatch(value) &&
             !errors.contains(AppConstents.kInvalidEmailError)) {
-          setState(() => errors.add(AppConstents.kInvalidEmailError));
+          addError(error: AppConstents.kInvalidEmailError);
         }
       },
       onChanged: (value) {
         if (value.isNotEmpty && errors.contains(AppConstents.kEmailNullError)) {
-          setState(() => errors.remove(AppConstents.kEmailNullError));
+          removeError(error: AppConstents.kEmailNullError);
         }
         if (AppConstents.emailValidatorRegExp.hasMatch(value) &&
             errors.contains(AppConstents.kInvalidEmailError)) {
-          setState(() => errors.remove(AppConstents.kInvalidEmailError));
+          removeError(error: AppConstents.kInvalidEmailError);
         }
       },
       onSaved: (newValue) => email = newValue!,
@@ -80,19 +88,19 @@ class _SignUpFormState extends State<SignUpForm> {
       obscureText: true,
       validator: (value) {
         if (value!.isEmpty && !errors.contains(AppConstents.kPassNullError)) {
-          setState(() => errors.add(AppConstents.kPassNullError));
+          addError(error: AppConstents.kPassNullError);
         } else if (value.length < 8 &&
             !errors.contains(AppConstents.kShortPassError)) {
-          setState(() => errors.add(AppConstents.kShortPassError));
+          addError(error: AppConstents.kShortPassError);
         }
       },
       onChanged: (value) {
         if (value.isNotEmpty && errors.contains(AppConstents.kPassNullError)) {
-          setState(() => errors.remove(AppConstents.kPassNullError));
+          removeError(error: AppConstents.kPassNullError);
         }
         if (value.length >= 8 &&
             errors.contains(AppConstents.kShortPassError)) {
-          setState(() => errors.remove(AppConstents.kShortPassError));
+          removeError(error: AppConstents.kShortPassError);
         }
         password = value;
       },
@@ -114,14 +122,12 @@ class _SignUpFormState extends State<SignUpForm> {
           return '';
         }
         if (password != confirmPassword) {
-          setState(() {
-            errors.add(AppConstents.kMatchPassError);
-          });
+          addError(error: AppConstents.kMatchPassError);
         }
       },
       onChanged: (value) {
         if (password == confirmPassword) {
-          setState(() => errors.remove(AppConstents.kMatchPassError));
+          removeError(error: AppConstents.kMatchPassError);
         }
       },
       onSaved: (newValue) => confirmPassword = newValue!,
