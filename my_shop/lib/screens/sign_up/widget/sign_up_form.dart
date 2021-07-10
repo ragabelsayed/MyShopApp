@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '/screens/complete_profile/complete_profile_screen.dart';
 import '/config/constants.dart';
 import '/widget/custom_suffix_icon.dart';
 import '/widget/default_btn.dart';
@@ -12,7 +13,6 @@ class SignUpForm extends StatefulWidget {
 class _SignUpFormState extends State<SignUpForm> {
   final _formKey = GlobalKey<FormState>();
   List<String> errors = [];
-  // late String userName;
   late String email;
   late String password;
   late String confirmPassword;
@@ -43,8 +43,7 @@ class _SignUpFormState extends State<SignUpForm> {
             onPressed: () {
               if (_formKey.currentState!.validate()) {
                 _formKey.currentState!.save();
-
-                // Navigator.pushNamed(context, LoginSuccessScreen.routName);
+                Navigator.pushNamed(context, CompleteProfileScreen.routName);
               }
             },
           ),
@@ -118,15 +117,12 @@ class _SignUpFormState extends State<SignUpForm> {
     return TextFormField(
       obscureText: true,
       validator: (value) {
-        if (value!.isEmpty) {
-          return '';
-        }
-        if (password != confirmPassword) {
+        if (password != value) {
           addError(error: AppConstents.kMatchPassError);
         }
       },
       onChanged: (value) {
-        if (password == confirmPassword) {
+        if (password == value) {
           removeError(error: AppConstents.kMatchPassError);
         }
       },
