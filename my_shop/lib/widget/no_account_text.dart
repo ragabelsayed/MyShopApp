@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:my_shop/screens/sign_up/sign_up_screen.dart';
 import '/config/palette.dart';
 import '/config/size.dart';
 
@@ -26,7 +27,7 @@ class NoAccountText extends StatelessWidget {
               fontSize: SizeConfig.getProportionateScreentWidth(16),
             ),
           ),
-          onPressed: () {},
+          onPressed: () => Navigator.pushNamed(context, SignUpScreen.routName),
         ),
       ],
     );

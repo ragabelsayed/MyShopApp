@@ -1,25 +1,21 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:my_shop/config/constants.dart';
-import 'package:my_shop/config/palette.dart';
-import 'package:my_shop/screens/forgot_password/forgot_password_screen.dart';
-import 'package:my_shop/screens/login_success/login_sucscess_screen.dart';
+import 'package:my_shop/widget/custom_suffix_icon.dart';
+import 'package:my_shop/widget/default_btn.dart';
 import 'package:my_shop/widget/form_error.dart';
-import '/widget/default_btn.dart';
-import '/widget/custom_suffix_icon.dart';
 
-class SignForm extends StatefulWidget {
+class SignUpForm extends StatefulWidget {
   @override
-  _SignFormState createState() => _SignFormState();
+  _SignUpFormState createState() => _SignUpFormState();
 }
 
-class _SignFormState extends State<SignForm> {
+class _SignUpFormState extends State<SignUpForm> {
   final _formKey = GlobalKey<FormState>();
+  List<String> errors = [];
+  // late String userName;
   late String email;
   late String password;
-  bool _remember = false;
-  final List<String> errors = [];
+  late String confirmPassword;
 
   @override
   Widget build(BuildContext context) {
@@ -31,40 +27,16 @@ class _SignFormState extends State<SignForm> {
           const SizedBox(height: 30),
           _buildPasswordFormField(),
           const SizedBox(height: 30),
-          Row(
-            children: [
-              Checkbox(
-                  value: _remember,
-                  activeColor: Palette.kPrimaryColor,
-                  onChanged: (value) {
-                    setState(() {
-                      _remember = value!;
-                    });
-                  }),
-              Text('Remember me'),
-              Spacer(),
-              TextButton(
-                onPressed: () =>
-                    Navigator.pushNamed(context, ForgotPasswordScreen.routName),
-                child: Text(
-                  'Forgot Password',
-                  style: TextStyle(
-                    color: Colors.grey,
-                    decoration: TextDecoration.underline,
-                  ),
-                ),
-              ),
-            ],
-          ),
+          _buildConfPasswordFormField(),
           FormError(errors: errors),
-          const SizedBox(height: 20),
+          const SizedBox(height: 40),
           DefaultButton(
             text: 'Continue',
             onPressed: () {
               if (_formKey.currentState!.validate()) {
                 _formKey.currentState!.save();
 
-                Navigator.pushNamed(context, LoginSuccessScreen.routName);
+                // Navigator.pushNamed(context, LoginSuccessScreen.routName);
               }
             },
           ),
@@ -122,11 +94,40 @@ class _SignFormState extends State<SignForm> {
             errors.contains(AppConstents.kShortPassError)) {
           setState(() => errors.remove(AppConstents.kShortPassError));
         }
+        password = value;
       },
       onSaved: (newValue) => password = newValue!,
       decoration: InputDecoration(
         labelText: 'Password',
         hintText: 'Enter your password',
+        floatingLabelBehavior: FloatingLabelBehavior.always,
+        suffixIcon: CustomSuffixIcon(svgIcon: 'assets/icons/Lock.svg'),
+      ),
+    );
+  }
+
+  TextFormField _buildConfPasswordFormField() {
+    return TextFormField(
+      obscureText: true,
+      validator: (value) {
+        if (value!.isEmpty) {
+          return '';
+        }
+        if (password != confirmPassword) {
+          setState(() {
+            errors.add(AppConstents.kMatchPassError);
+          });
+        }
+      },
+      onChanged: (value) {
+        if (password == confirmPassword) {
+          setState(() => errors.remove(AppConstents.kMatchPassError));
+        }
+      },
+      onSaved: (newValue) => confirmPassword = newValue!,
+      decoration: InputDecoration(
+        labelText: 'Confirm Password',
+        hintText: 'Re-enter your password',
         floatingLabelBehavior: FloatingLabelBehavior.always,
         suffixIcon: CustomSuffixIcon(svgIcon: 'assets/icons/Lock.svg'),
       ),

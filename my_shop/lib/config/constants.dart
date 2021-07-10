@@ -1,5 +1,15 @@
+import 'package:flutter/material.dart';
+import 'package:my_shop/config/size.dart';
+
 class AppConstents {
   static const kAnimationDuration = Duration(milliseconds: 200);
+
+  static final headingStyle = TextStyle(
+    fontSize: SizeConfig.getProportionateScreentWidth(28),
+    fontWeight: FontWeight.bold,
+    color: Colors.black,
+    height: 1.5,
+  );
 
   // Form Error
   static final RegExp emailValidatorRegExp =
