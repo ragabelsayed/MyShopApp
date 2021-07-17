@@ -1,2 +1,2 @@
 # MyShopApp
-A E-Commerce app using flutter.
+E-Commerce app using flutter.
