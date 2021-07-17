@@ -1,0 +1,24 @@
+import 'package:flutter/material.dart';
+import 'home_header.dart';
+
+class Body extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return SafeArea(
+      child: SizedBox(
+        width: double.infinity,
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 20),
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                const SizedBox(height: 20),
+                HomeHeader(),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
