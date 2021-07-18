@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+
 import 'categories.dart';
 import 'discount_banner.dart';
 import 'home_header.dart';
-import 'section_title.dart';
+
+import 'special_offers.dart';
 
 class Body extends StatelessWidget {
   @override
@@ -22,10 +24,7 @@ class Body extends StatelessWidget {
                 const SizedBox(height: 20),
                 Categories(),
                 const SizedBox(height: 20),
-                SectionTitle(
-                  text: 'Special for you',
-                  press: () {},
-                ),
+                SpecialOffers(),
               ],
             ),
           ),
