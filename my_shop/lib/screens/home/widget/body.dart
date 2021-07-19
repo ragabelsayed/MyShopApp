@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'categories.dart';
 import 'discount_banner.dart';
 import 'home_header.dart';
-import 'section_title.dart';
+import 'product_card.dart';
 import 'special_offers.dart';
 
 class Body extends StatelessWidget {
@@ -25,10 +25,8 @@ class Body extends StatelessWidget {
                 const SizedBox(height: 20),
                 SpecialOffers(),
                 const SizedBox(height: 20),
-                SectionTitle(
-                  text: 'Popular Product',
-                  press: () {},
-                ),
+                PopularProducts(),
+                const SizedBox(height: 20),
               ],
             ),
           ),
