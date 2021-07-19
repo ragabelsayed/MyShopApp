@@ -15,15 +15,16 @@ class PopularProducts extends StatelessWidget {
           text: 'Popular Product',
           press: () {},
         ),
+        const SizedBox(height: 5),
         SizedBox(
           height: 230,
           width: double.infinity,
           child: ListView.builder(
+            padding: const EdgeInsets.symmetric(horizontal: 20),
             scrollDirection: Axis.horizontal,
             itemCount: demoProducts.length,
             itemBuilder: (context, i) => ProductCard(
               product: demoProducts[i],
-              press: () {},
             ),
           ),
         ),
@@ -34,11 +35,8 @@ class PopularProducts extends StatelessWidget {
 
 class ProductCard extends StatelessWidget {
   final Product product;
-  final GestureTapCallback press;
-
   const ProductCard({
     required this.product,
-    required this.press,
   });
 
   @override
@@ -49,15 +47,18 @@ class ProductCard extends StatelessWidget {
         width: SizeConfig.getProportionateScreentWidth(140),
         child: Column(
           children: [
-            AspectRatio(
-              aspectRatio: 1.02,
-              child: Container(
-                padding: const EdgeInsets.all(20),
-                decoration: BoxDecoration(
-                  color: Palette.kSecondaryColor.withOpacity(0.1),
-                  borderRadius: BorderRadius.circular(15),
+            GestureDetector(
+              onTap: () {},
+              child: AspectRatio(
+                aspectRatio: 1.02,
+                child: Container(
+                  padding: const EdgeInsets.all(20),
+                  decoration: BoxDecoration(
+                    color: Palette.kSecondaryColor.withOpacity(0.1),
+                    borderRadius: BorderRadius.circular(15),
+                  ),
+                  child: Image.asset(product.images.first),
                 ),
-                child: Image.asset(product.images.first),
               ),
             ),
             const SizedBox(height: 5),

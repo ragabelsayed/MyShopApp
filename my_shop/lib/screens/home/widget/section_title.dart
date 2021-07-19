@@ -10,28 +10,31 @@ class SectionTitle extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
-        Text(
-          text,
-          style: TextStyle(
-            color: Colors.black,
-            fontWeight: FontWeight.bold,
-            fontSize: 18,
-          ),
-        ),
-        TextButton(
-          child: Text(
-            'See More',
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 20),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Text(
+            text,
             style: TextStyle(
-              color: Colors.grey,
+              color: Colors.black,
+              fontWeight: FontWeight.bold,
+              fontSize: 18,
             ),
           ),
-          onPressed: press,
-        ),
-      ],
+          TextButton(
+            child: Text(
+              'See More',
+              style: TextStyle(
+                color: Colors.grey,
+              ),
+            ),
+            onPressed: press,
+          ),
+        ],
+      ),
     );
   }
 }

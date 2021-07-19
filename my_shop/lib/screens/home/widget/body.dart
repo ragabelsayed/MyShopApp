@@ -11,24 +11,21 @@ class Body extends StatelessWidget {
     return SafeArea(
       child: SizedBox(
         width: double.infinity,
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20),
-          child: SingleChildScrollView(
-            child: Column(
-              children: [
-                const SizedBox(height: 20),
-                HomeHeader(),
-                const SizedBox(height: 20),
-                DiscountBanner(),
-                const SizedBox(height: 20),
-                Categories(),
-                const SizedBox(height: 20),
-                SpecialOffers(),
-                const SizedBox(height: 20),
-                PopularProducts(),
-                const SizedBox(height: 20),
-              ],
-            ),
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              const SizedBox(height: 20),
+              HomeHeader(),
+              const SizedBox(height: 20),
+              DiscountBanner(),
+              const SizedBox(height: 20),
+              Categories(),
+              const SizedBox(height: 20),
+              SpecialOffers(),
+              const SizedBox(height: 20),
+              PopularProducts(),
+              const SizedBox(height: 20),
+            ],
           ),
         ),
       ),

@@ -23,10 +23,12 @@ class SpecialOffers extends StatelessWidget {
           text: 'Special for you',
           press: () {},
         ),
+        const SizedBox(height: 5),
         SizedBox(
           height: 100,
           width: double.infinity,
           child: ListView.builder(
+            padding: const EdgeInsets.symmetric(horizontal: 20),
             scrollDirection: Axis.horizontal,
             itemCount: _specialList.length,
             itemBuilder: (context, i) => SpecialOfferCard(

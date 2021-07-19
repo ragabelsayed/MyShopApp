@@ -26,15 +26,18 @@ class Categories extends StatelessWidget {
         'text': 'More',
       }
     ];
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: List.generate(
-        _categories.length,
-        (i) => CategoryCard(
-          icon: _categories[i]['icon'],
-          text: _categories[i]['text'],
-          press: () {},
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 20),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: List.generate(
+          _categories.length,
+          (i) => CategoryCard(
+            icon: _categories[i]['icon'],
+            text: _categories[i]['text'],
+            press: () {},
+          ),
         ),
       ),
     );
