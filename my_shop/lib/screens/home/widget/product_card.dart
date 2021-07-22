@@ -1,12 +1,33 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:my_shop/providers/api.dart';
 
 import '/config/palette.dart';
 import '/config/size.dart';
 import '/models/product.dart';
 import 'section_title.dart';
 
-class PopularProducts extends StatelessWidget {
+class PopularProducts extends StatefulWidget {
+  @override
+  _PopularProductsState createState() => _PopularProductsState();
+}
+
+class _PopularProductsState extends State<PopularProducts> {
+  bool _isInit = true;
+  bool _isLoading = false;
+
+  @override
+  void didChangeDependencies() {
+    if (_isInit) {
+      setState(() {
+        _isLoading = true;
+      });
+      API.fetchAndSetData().then((_) => setState(() => _isLoading = false));
+    }
+    _isInit = false;
+    super.didChangeDependencies();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -16,18 +37,22 @@ class PopularProducts extends StatelessWidget {
           press: () {},
         ),
         const SizedBox(height: 5),
-        SizedBox(
-          height: 230,
-          width: double.infinity,
-          child: ListView.builder(
-            padding: const EdgeInsets.symmetric(horizontal: 20),
-            scrollDirection: Axis.horizontal,
-            itemCount: demoProducts.length,
-            itemBuilder: (context, i) => ProductCard(
-              product: demoProducts[i],
-            ),
-          ),
-        ),
+        _isLoading
+            ? Center(
+                child: CircularProgressIndicator(),
+              )
+            : SizedBox(
+                height: 230,
+                width: double.infinity,
+                child: ListView.builder(
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  scrollDirection: Axis.horizontal,
+                  itemCount: demoProducts.length,
+                  itemBuilder: (context, i) => ProductCard(
+                    product: demoProducts[i],
+                  ),
+                ),
+              ),
       ],
     );
   }
@@ -57,7 +82,8 @@ class ProductCard extends StatelessWidget {
                     color: Palette.kSecondaryColor.withOpacity(0.1),
                     borderRadius: BorderRadius.circular(15),
                   ),
-                  child: Image.asset(product.images.first),
+                  child: Image.network(product.images.first),
+                  // child: Image.asset(product.images.first),
                 ),
               ),
             ),
