@@ -44,7 +44,7 @@ class Product {
   }
 }
 
-List<Product> demoProducts = [];
+// List<Product> demoProducts = [];
 //  = [
 //   Product(
 //     id: '1',

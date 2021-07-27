@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:my_shop/providers/api.dart';
-
+import '/providers/product_data.dart';
 import '/config/palette.dart';
 import '/config/size.dart';
 import '/models/product.dart';
@@ -22,7 +22,9 @@ class _PopularProductsState extends State<PopularProducts> {
       setState(() {
         _isLoading = true;
       });
-      API.fetchAndSetData().then((_) => setState(() => _isLoading = false));
+      context.read(productProvider).fetchAndSetData().then((value) {
+        setState(() => _isLoading = false);
+      });
     }
     _isInit = false;
     super.didChangeDependencies();
@@ -47,9 +49,14 @@ class _PopularProductsState extends State<PopularProducts> {
                 child: ListView.builder(
                   padding: const EdgeInsets.symmetric(horizontal: 20),
                   scrollDirection: Axis.horizontal,
-                  itemCount: demoProducts.length,
-                  itemBuilder: (context, i) => ProductCard(
-                    product: demoProducts[i],
+                  itemCount: context.read(productProvider).items.length,
+                  itemBuilder: (context, i) => Consumer(
+                    builder: (context, watch, child) {
+                      final products = watch(productProvider);
+                      return ProductCard(
+                        product: products.items[i],
+                      );
+                    },
                   ),
                 ),
               ),

@@ -45,7 +45,7 @@ class API {
           );
         },
       );
-      demoProducts = _loadedProducts;
+      // demoProducts = _loadedProducts;
     } catch (error) {
       throw error;
     }
