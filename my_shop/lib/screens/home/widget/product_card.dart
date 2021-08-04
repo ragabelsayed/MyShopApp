@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:my_shop/screens/product_details/product_details_screen.dart';
 import '/providers/product_data.dart';
 import '/config/palette.dart';
 import '/config/size.dart';
@@ -80,7 +81,11 @@ class ProductCard extends StatelessWidget {
         child: Column(
           children: [
             GestureDetector(
-              onTap: () {},
+              onTap: () => Navigator.pushNamed(
+                context,
+                ProductDetailScreen.routName,
+                arguments: ProductDetailsArguments(product: product),
+              ),
               child: AspectRatio(
                 aspectRatio: 1.02,
                 child: Container(

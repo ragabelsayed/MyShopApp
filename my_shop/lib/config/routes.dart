@@ -7,6 +7,7 @@ import '/screens/sign_up/sign_up_screen.dart';
 import '/screens/complete_profile/complete_profile_screen.dart';
 import '/screens/otp/otp_screen.dart';
 import '/screens/home/home_screen.dart';
+import '/screens/product_details/product_details_screen.dart';
 
 class AppRoutes {
   static final Map<String, WidgetBuilder> routes = {
@@ -18,5 +19,6 @@ class AppRoutes {
     CompleteProfileScreen.routName: (ctx) => CompleteProfileScreen(),
     OTPScreen.routName: (ctx) => OTPScreen(),
     HomeScreen.routeName: (ctx) => HomeScreen(),
+    ProductDetailScreen.routName: (ctx) => ProductDetailScreen(),
   };
 }
