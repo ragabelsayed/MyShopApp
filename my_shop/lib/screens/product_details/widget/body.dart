@@ -1,5 +1,9 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:my_shop/config/size.dart';
+import 'package:my_shop/widget/default_btn.dart';
 import '/models/product.dart';
+import 'color_dot.dart';
 import 'product_description.dart';
 import 'product_preview.dart';
 import 'top_rounded_container.dart';
@@ -9,12 +13,39 @@ class Body extends StatelessWidget {
   const Body({required this.product});
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return ListView(
       children: [
         ProductPreview(productImages: product.images),
         TopRoundedContainer(
           color: Colors.white,
-          child: ProductDescription(product: product),
+          child: Column(
+            children: [
+              ProductDescription(product: product),
+              TopRoundedContainer(
+                color: Color(0xFFF6F7F9).withOpacity(1),
+                child: Column(
+                  children: [
+                    ColorDots(product: product),
+                    TopRoundedContainer(
+                      color: Colors.white,
+                      child: Padding(
+                        padding: EdgeInsets.only(
+                          left: SizeConfig.screenWidth * 0.15,
+                          right: SizeConfig.screenWidth * 0.15,
+                          bottom: SizeConfig.getProportionateScreentWidth(40),
+                          top: SizeConfig.getProportionateScreentWidth(15),
+                        ),
+                        child: DefaultButton(
+                          text: 'Add to cart',
+                          onPressed: () {},
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
         ),
       ],
     );

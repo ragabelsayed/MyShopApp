@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:my_shop/config/constants.dart';
 import '/config/palette.dart';
 
 class ProductPreview extends StatefulWidget {
@@ -35,8 +36,9 @@ class _ProductPreviewState extends State<ProductPreview> {
   }
 
   Widget _buildSmallPreview({required int index}) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 5),
+    return AnimatedContainer(
+      duration: AppConstents.kAnimationDuration,
+      margin: EdgeInsets.only(right: 10),
       child: OutlinedButton(
         style: OutlinedButton.styleFrom(
           padding: const EdgeInsets.all(10),
