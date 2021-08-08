@@ -4,6 +4,7 @@ import './widget/body.dart';
 import '/models/cart.dart';
 import '/providers/cart_data.dart';
 import '/providers/product_data.dart';
+import 'widget/check_out_card.dart';
 
 class CartScreen extends ConsumerWidget {
   static const routName = '/cart';
@@ -21,21 +22,26 @@ class CartScreen extends ConsumerWidget {
     ]);
 
     return Scaffold(
-      appBar: AppBar(
-        title: Column(
-          children: [
-            Text(
-              'Your Cart',
-              style: TextStyle(color: Colors.black),
-            ),
-            Text(
-              carts.isEmpty ? '0 items' : '${carts.length} items',
-              style: Theme.of(context).textTheme.caption,
-            ),
-          ],
-        ),
-      ),
+      appBar: _buildAppBar(carts, context),
       body: Body(),
+      bottomNavigationBar: CheckOutCard(),
+    );
+  }
+
+  AppBar _buildAppBar(List<Cart> carts, BuildContext context) {
+    return AppBar(
+      title: Column(
+        children: [
+          Text(
+            'Your Cart',
+            style: TextStyle(color: Colors.black),
+          ),
+          Text(
+            carts.isEmpty ? '0 items' : '${carts.length} items',
+            style: Theme.of(context).textTheme.caption,
+          ),
+        ],
+      ),
     );
   }
 }

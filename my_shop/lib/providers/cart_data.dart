@@ -12,6 +12,6 @@ class CartNotifier extends StateNotifier<List<Cart>> {
   }
 
   void removeCart(Cart cart) {
-    state.add(cart);
+    state.remove(cart);
   }
 }
