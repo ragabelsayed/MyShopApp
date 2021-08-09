@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:my_shop/providers/cart_data.dart';
+import '/providers/cart_data.dart';
 import '/config/palette.dart';
 import '/widget/default_btn.dart';
 

@@ -11,8 +11,6 @@ class Body extends StatelessWidget {
   const Body({Key? key, required this.carts}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    print('hi');
-
     return carts.isNotEmpty
         ? ListView.builder(
             padding: const EdgeInsets.symmetric(horizontal: 20),

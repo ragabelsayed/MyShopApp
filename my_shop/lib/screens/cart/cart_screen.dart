@@ -25,7 +25,6 @@ class CartScreen extends ConsumerWidget {
     required int numOfItems,
     required BuildContext context,
   }) {
-    print('hi 1');
     return AppBar(
       title: Column(
         children: [

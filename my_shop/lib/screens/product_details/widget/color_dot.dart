@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:my_shop/models/cart.dart';
-import 'package:my_shop/providers/cart_data.dart';
+import '/models/cart.dart';
+import '/providers/cart_data.dart';
 import '/config/palette.dart';
 import '/widget/rounded_icon_btn.dart';
 import '/models/product.dart';
