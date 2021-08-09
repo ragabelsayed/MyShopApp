@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:my_shop/models/cart.dart';
+import 'package:my_shop/providers/cart_data.dart';
 import '/config/palette.dart';
 import '/widget/rounded_icon_btn.dart';
 import '/models/product.dart';
 
 class ColorDots extends StatelessWidget {
-  const ColorDots({required this.product});
+  const ColorDots({required this.product, required this.cart});
   final Product product;
+  final Cart cart;
   @override
   Widget build(BuildContext context) {
     int selectedColor = 3;
@@ -21,15 +25,23 @@ class ColorDots extends StatelessWidget {
             ),
           ),
           Spacer(),
-          RoundedIconBtn(
-            icon: Icons.remove,
-            press: () {},
+          Consumer(
+            builder: (context, watch, child) => RoundedIconBtn(
+              icon: Icons.remove,
+              press: () {
+                context.read(cartProvider.notifier).decrement(cart: cart);
+              },
+            ),
           ),
           SizedBox(width: 15),
-          RoundedIconBtn(
-            icon: Icons.add,
-            press: () {},
-            showShadow: true,
+          Consumer(
+            builder: (context, watch, child) => RoundedIconBtn(
+              icon: Icons.add,
+              press: () {
+                context.read(cartProvider.notifier).increment(cart: cart);
+              },
+              showShadow: true,
+            ),
           ),
         ],
       ),

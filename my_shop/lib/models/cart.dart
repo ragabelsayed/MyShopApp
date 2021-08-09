@@ -1,13 +1,12 @@
 import 'package:my_shop/models/product.dart';
 
 class Cart {
-  final String id;
+  final String id = DateTime.now().toString();
   final Product product;
-  final int numOfItems;
+  int numOfItems;
 
   Cart({
-    required this.id,
     required this.product,
-    required this.numOfItems,
+    this.numOfItems = 1,
   });
 }

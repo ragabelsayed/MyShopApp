@@ -8,11 +8,27 @@ class CartNotifier extends StateNotifier<List<Cart>> {
   CartNotifier([List<Cart>? initialCarts]) : super(initialCarts ?? []);
 
   void addCart(Cart cart) {
-    state.add(cart);
+    if (state.contains(cart)) {
+    } else {
+      state.add(cart);
+    }
   }
 
   void removeCart(Cart target) {
     // state.removeWhere((e) => e.id == target.cartId);
     state = state.where((cart) => cart.id != target.id).toList();
+  }
+
+  void increment({required Cart cart}) {
+    if (state.contains(cart)) {
+      state.firstWhere((e) => e.id == cart.id).numOfItems++;
+    } else {
+      state.add(cart);
+      state.firstWhere((e) => e.id == cart.id).numOfItems++;
+    }
+  }
+
+  void decrement({required Cart cart}) {
+    state.firstWhere((e) => e.id == cart.id).numOfItems--;
   }
 }
