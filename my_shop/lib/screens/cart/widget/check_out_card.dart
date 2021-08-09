@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:my_shop/config/palette.dart';
-import 'package:my_shop/widget/default_btn.dart';
+import '/config/palette.dart';
+import '/widget/default_btn.dart';
 
 class CheckOutCard extends StatelessWidget {
   const CheckOutCard({

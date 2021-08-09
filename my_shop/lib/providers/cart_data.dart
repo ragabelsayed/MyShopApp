@@ -5,13 +5,14 @@ final cartProvider =
     StateNotifierProvider<CartNotifier, List<Cart>>((ref) => CartNotifier());
 
 class CartNotifier extends StateNotifier<List<Cart>> {
-  CartNotifier() : super([]);
+  CartNotifier([List<Cart>? initialCarts]) : super(initialCarts ?? []);
 
   void addCart(Cart cart) {
     state.add(cart);
   }
 
-  void removeCart(Cart cart) {
-    state.remove(cart);
+  void removeCart(Cart target) {
+    // state.removeWhere((e) => e.id == target.cartId);
+    state = state.where((cart) => cart.id != target.id).toList();
   }
 }

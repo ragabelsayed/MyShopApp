@@ -5,13 +5,12 @@ import '/models/cart.dart';
 import '/providers/cart_data.dart';
 import 'cart_item_card.dart';
 
-class Body extends ConsumerWidget {
-  // final List<Cart> carts;
+class Body extends StatelessWidget {
+  final List<Cart> carts;
 
-  // const Body({Key? key, required this.carts}) : super(key: key);
+  const Body({Key? key, required this.carts}) : super(key: key);
   @override
-  Widget build(BuildContext context, ScopedReader watch) {
-    List<Cart> carts = watch(cartProvider);
+  Widget build(BuildContext context) {
     print('hi');
 
     return carts.isNotEmpty
@@ -21,16 +20,12 @@ class Body extends ConsumerWidget {
             itemBuilder: (context, index) => Padding(
               padding: const EdgeInsets.symmetric(vertical: 10),
               child: Dismissible(
-                key: UniqueKey(),
-                // key: ValueKey(carts[index].product.id),
-                // key: Key(carts[index].product.id.toString()),
+                key: ValueKey(carts[index].id),
                 direction: DismissDirection.endToStart,
                 onDismissed: (direction) {
-                  // cart.removeCart(carts[index]);
                   context.read(cartProvider.notifier).removeCart(
                         carts[index],
                       );
-                  // context.read(cartProvider).remove(carts[index]);
                 },
                 background: Container(
                   padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -47,6 +42,6 @@ class Body extends ConsumerWidget {
               ),
             ),
           )
-        : Text('Cart is empty 😔');
+        : Center(child: Text('Cart is empty 🥺'));
   }
 }

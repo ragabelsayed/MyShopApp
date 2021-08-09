@@ -1,6 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:my_shop/config/size.dart';
+import 'package:my_shop/models/cart.dart';
+import 'package:my_shop/providers/cart_data.dart';
 import 'package:my_shop/widget/default_btn.dart';
 import '/models/product.dart';
 import 'color_dot.dart';
@@ -35,9 +38,19 @@ class Body extends StatelessWidget {
                           bottom: SizeConfig.getProportionateScreentWidth(40),
                           top: SizeConfig.getProportionateScreentWidth(15),
                         ),
-                        child: DefaultButton(
-                          text: 'Add to cart',
-                          onPressed: () {},
+                        child: Consumer(
+                          builder: (context, watch, child) => DefaultButton(
+                            text: 'Add to cart',
+                            onPressed: () {
+                              context.read(cartProvider.notifier).addCart(
+                                    Cart(
+                                      id: DateTime.now().toString(),
+                                      product: product,
+                                      numOfItems: 2,
+                                    ),
+                                  );
+                            },
+                          ),
                         ),
                       ),
                     ),

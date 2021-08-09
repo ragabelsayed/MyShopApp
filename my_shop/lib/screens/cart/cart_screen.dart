@@ -3,7 +3,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import './widget/body.dart';
 import '/models/cart.dart';
 import '/providers/cart_data.dart';
-import '/providers/product_data.dart';
 import 'widget/check_out_card.dart';
 
 class CartScreen extends ConsumerWidget {
@@ -12,23 +11,21 @@ class CartScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, ScopedReader watch) {
     List<Cart> carts = watch(cartProvider);
-    if (watch(cartProvider).isNotEmpty) {
-      watch(cartProvider).clear();
-    }
-    watch(cartProvider).addAll([
-      Cart(product: watch(productProvider).items[0], numOfItems: 2),
-      Cart(product: watch(productProvider).items[1], numOfItems: 1),
-      Cart(product: watch(productProvider).items[3], numOfItems: 1),
-    ]);
-
     return Scaffold(
-      appBar: _buildAppBar(carts, context),
-      body: Body(),
+      appBar: _buildAppBar(
+        context: context,
+        numOfItems: carts.isNotEmpty ? carts.length : 0,
+      ),
+      body: Body(carts: carts),
       bottomNavigationBar: CheckOutCard(),
     );
   }
 
-  AppBar _buildAppBar(List<Cart> carts, BuildContext context) {
+  AppBar _buildAppBar({
+    required int numOfItems,
+    required BuildContext context,
+  }) {
+    print('hi 1');
     return AppBar(
       title: Column(
         children: [
@@ -37,7 +34,7 @@ class CartScreen extends ConsumerWidget {
             style: TextStyle(color: Colors.black),
           ),
           Text(
-            carts.isEmpty ? '0 items' : '${carts.length} items',
+            '$numOfItems items',
             style: Theme.of(context).textTheme.caption,
           ),
         ],
