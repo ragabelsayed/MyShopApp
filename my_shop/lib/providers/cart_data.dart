@@ -19,6 +19,14 @@ class CartNotifier extends StateNotifier<List<Cart>> {
     state = state.where((cart) => cart.id != target.id).toList();
   }
 
+  double getTotal() {
+    var total = 0.0;
+    state.forEach((cart) {
+      total = total + (cart.numOfItems * cart.product.price);
+    });
+    return total;
+  }
+
   void increment({required Cart cart}) {
     if (state.contains(cart)) {
       state.firstWhere((e) => e.id == cart.id).numOfItems++;

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:my_shop/providers/cart_data.dart';
 import '/config/palette.dart';
 import '/widget/default_btn.dart';
 
@@ -58,19 +60,26 @@ class CheckOutCard extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text.rich(
-                TextSpan(
-                  text: 'Total:\n',
-                  children: [
+              Consumer(
+                builder: (context, watch, child) {
+                  var total = watch(cartProvider.notifier)
+                      .getTotal()
+                      .toStringAsFixed(2);
+                  return Text.rich(
                     TextSpan(
-                      text: '\$366.55',
-                      style: TextStyle(
-                        fontSize: 16,
-                        color: Colors.black,
-                      ),
+                      text: 'Total:\n',
+                      children: [
+                        TextSpan(
+                          text: '\$$total',
+                          style: const TextStyle(
+                            fontSize: 16,
+                            color: Colors.black,
+                          ),
+                        ),
+                      ],
                     ),
-                  ],
-                ),
+                  );
+                },
               ),
               SizedBox(
                 width: 190,
