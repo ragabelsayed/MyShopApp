@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:my_shop/screens/cart/profile/profile_screen.dart';
 import 'config/routes.dart';
 import 'config/theme.dart';
 import 'screens/splash/splash_screen.dart';
@@ -25,8 +24,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: theme(),
       // home: SplashSCreen(),
-      initialRoute: ProfileScreen.routName,
-      // initialRoute: SplashSCreen.routName,
+      initialRoute: SplashSCreen.routName,
       routes: AppRoutes.routes,
     );
   }
