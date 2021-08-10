@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import '/screens/splash/splash_screen.dart';
 import '/screens/sign_in/sign_in_screen.dart';
 import '/screens/forgot_password/forgot_password_screen.dart';
@@ -9,6 +10,7 @@ import '/screens/otp/otp_screen.dart';
 import '/screens/home/home_screen.dart';
 import '/screens/product_details/product_details_screen.dart';
 import '/screens/cart/cart_screen.dart';
+import '/screens/cart/profile/profile_screen.dart';
 
 class AppRoutes {
   static final Map<String, WidgetBuilder> routes = {
@@ -22,5 +24,6 @@ class AppRoutes {
     HomeScreen.routeName: (ctx) => HomeScreen(),
     ProductDetailScreen.routName: (ctx) => ProductDetailScreen(),
     CartScreen.routName: (ctx) => CartScreen(),
+    ProfileScreen.routName: (ctx) => ProfileScreen(),
   };
 }
